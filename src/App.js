@@ -73,42 +73,49 @@ const App = () => {
     web3Modal.clearCachedProvider();
     console.log("cached provider after clear: ", web3Modal.cachedProvider);
     provider = null;
-    // setaccount("");
+    setaccount("");
     window.location.reload();
   };
 
   useEffect(() => {
     const run = async () => {
-      const accounts = await web3.eth.getAccounts();
-      // setaccount(account[0]);
+      try {
+        setGold(false);
+        setSilver(false);
+        setBronze(false);
+        const accounts = await web3.eth.getAccounts();
+        // setaccount(account[0]);
 
-      const userAddress = accounts[0];
-      // "0x6ff9c8ed337de934e46e773f61a1a3369617c3ce";
-      //   "0x5908bfd84673974ddb8b6688501a53ac5fc92b6b";
-      const balance = await JorrToken.methods
-        .balanceOf(userAddress.toString())
-        .call();
-
-      for (let i = 0; i < balance; i++) {
-        const tokenId = await JorrToken.methods
-          .tokenOfOwnerByIndex(userAddress, i)
+        const userAddress = accounts[0];
+        // "0x6ff9c8ed337de934e46e773f61a1a3369617c3ce";
+        //   "0x5908bfd84673974ddb8b6688501a53ac5fc92b6b";
+        const balance = await JorrToken.methods
+          .balanceOf(userAddress.toString())
           .call();
 
-        const url =
-          // `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
-          `https://rinkeby-api.opensea.io/api/v1/asset/0x002aF40A6eB3C688612184C51500b97C1b89dfFC/${tokenId}/`;
-        const { data } = await axios.get(url);
+        for (let i = 0; i < balance; i++) {
+          const tokenId = await JorrToken.methods
+            .tokenOfOwnerByIndex(userAddress, i)
+            .call();
 
-        await data.traits.map((trait) => {
-          //   console.log(trait);
-          if (trait.trait_type === "Level") {
-            console.log(trait.value);
-            if (trait.value === "Gold") setGold(true);
-            else if (trait.value === "Silver") setSilver(true);
-            else if (trait.value === "Bronze") setBronze(true);
-          }
-          return 0;
-        });
+          const url =
+            // `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
+            `https://rinkeby-api.opensea.io/api/v1/asset/0x002aF40A6eB3C688612184C51500b97C1b89dfFC/${tokenId}/`;
+          const { data } = await axios.get(url);
+
+          await data.traits.map((trait) => {
+            //   console.log(trait);
+            if (trait.trait_type === "Level") {
+              console.log(trait.value);
+              if (trait.value === "Gold") setGold(true);
+              else if (trait.value === "Silver") setSilver(true);
+              else if (trait.value === "Bronze") setBronze(true);
+            }
+            return 0;
+          });
+        }
+      } catch (err) {
+        console.log(err);
       }
     };
     run();
