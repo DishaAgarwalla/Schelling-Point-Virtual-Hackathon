@@ -12,8 +12,8 @@ import JorrToken from "./ethereum/JorrToken";
 const axios = require("axios");
 
 const infuraId =
-  "https://mainnet.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
-// "https://kovan.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
+  // "https://mainnet.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
+  "https://rinkeby.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
 
 const providerOptions = {
   walletconnect: {
@@ -79,10 +79,11 @@ const App = () => {
 
   useEffect(() => {
     const run = async () => {
-      const account = await web3.eth.getAccounts();
-      setaccount(account[0]);
+      const accounts = await web3.eth.getAccounts();
+      // setaccount(account[0]);
 
-      const userAddress = "0x6ff9c8ed337de934e46e773f61a1a3369617c3ce";
+      const userAddress = accounts[0];
+      // "0x6ff9c8ed337de934e46e773f61a1a3369617c3ce";
       //   "0x5908bfd84673974ddb8b6688501a53ac5fc92b6b";
       const balance = await JorrToken.methods
         .balanceOf(userAddress.toString())
@@ -93,7 +94,9 @@ const App = () => {
           .tokenOfOwnerByIndex(userAddress, i)
           .call();
 
-        const url = `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
+        const url =
+          // `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
+          `https://rinkeby-api.opensea.io/api/v1/asset/0x002aF40A6eB3C688612184C51500b97C1b89dfFC/${tokenId}/`;
         const { data } = await axios.get(url);
 
         await data.traits.map((trait) => {
@@ -109,7 +112,7 @@ const App = () => {
       }
     };
     run();
-  }, []);
+  }, [account]);
 
   useEffect(() => {
     async function listenMMAccount() {
@@ -120,17 +123,21 @@ const App = () => {
           setaccount(account[0]);
           // accounts = await web3.eth.getAccounts();
           console.log(account);
+          setGold(false);
+          setSilver(false);
+          setBronze(false);
         });
       } catch (err) {
         console.log("Browser wallet not installed!");
       }
     }
-    onConnectWallet();
+
     listenMMAccount();
   }, []);
 
   useEffect(() => {
     alert("Connect to mainnet!");
+    onConnectWallet();
   }, []);
 
   return (
