@@ -26,7 +26,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
 
   const HeaderFields = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: row;npm 
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 15px;

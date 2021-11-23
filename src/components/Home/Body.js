@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Post from "../Post/index"
 
 const Body = () => {
   const BodyContainer = styled.div`
@@ -15,7 +16,6 @@ const Body = () => {
 
   const Content = styled.div`
     display: grid;
-    padding: 50px;
     align-items: center;
     justify-content: center;
   `;
@@ -32,6 +32,9 @@ const Body = () => {
           <Para>Welcome to Jorr Parivar</Para>
         </Content>
       </BodyContent>
+      <Post></Post>
+      <Post></Post>
+      <Post></Post>
     </BodyContainer>
   );
 };
