@@ -4,12 +4,11 @@ import styled from "styled-components";
 export const Container = styled.div`
     height: 600px;
     width: 600px;
-    align-items: center;
-    margin: 10px 0 0 700px;
-    display: center;
     border: solid 2px white;
     color: white;
     display: grid;
+    margin: auto;
+    justify-items: center;
 
 
     &:hover {
