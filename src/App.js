@@ -3,12 +3,15 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 
+import ProtectedRoute from "./utils/ProtectedRoute";
+
 import Web3Modal from "web3modal";
 import web3 from "./ethereum/web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 // const JorrToken = require("../ethereum/JorrToken");
 import JorrToken from "./ethereum/JorrToken";
+import Segment from "./pages/Segment";
 const axios = require("axios");
 
 const infuraId =
@@ -143,7 +146,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    alert("Connect to mainnet!");
+    // alert("Connect to mainnet!");
     onConnectWallet();
   }, []);
 
@@ -157,6 +160,25 @@ const App = () => {
       />
       <Switch>
         <Route exact path="/" component={() => <Home />} />
+        <ProtectedRoute
+          level={gold}
+          exact
+          path="/gold"
+          component={() => <Segment segment="Gold" />}
+        />
+        <ProtectedRoute
+          level={silver}
+          exact
+          path="/silver"
+          component={() => <Segment segment="Silver" />}
+        />
+        <ProtectedRoute
+          level={gold}
+          exact
+          path="/bronze"
+          component={() => <Segment segment="Bronze" />}
+        />
+        <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>
     </div>
   );

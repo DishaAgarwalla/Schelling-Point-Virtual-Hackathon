@@ -1,60 +1,38 @@
-import React from 'react';
+import React from "react";
 import {
-    Container, 
-    ImgWrapper, 
-    Img, 
-    Title, 
-    Description, 
-    TextWrapper
+  Container,
+  ImgWrapper,
+  Img,
+  Title,
+  Description,
+  TextWrapper,
 } from "./elements";
-import {  Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
 import "./style.css";
-import Image1 from "../../images/meme.png"; 
-import Image2 from "../../images/gogo.jpeg"; 
-import Image3 from "../../images/A.jpg"; 
+import Image1 from "../../images/meme.png";
+import Image2 from "../../images/gogo.jpeg";
+import Image3 from "../../images/A.jpg";
 
+const Post = ({ content }) => {
+  return (
+    <>
+      <Container>
+        <TextWrapper>
+          <Title>{content.title} </Title>
+        </TextWrapper>
 
-const Post = () => {
-    return (
-        <>
-            <Container>
+        <ImgWrapper>
+          <Img src={content.img}></Img>
+        </ImgWrapper>
 
-                <TextWrapper>
-                <Title> Meme Contest </Title>
-                </TextWrapper>
-
-                <ImgWrapper>
-
-                    <Img src={Image3} >
-                    </Img>
-
-                </ImgWrapper>
-
-                <TextWrapper>
-                    
-                    <Description>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
-                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
-                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-                    velit esse cillum dolore eu fugiat nulla pariatur.
-                    </Description>
-
-                    <Button className="button"> Book a Call </Button>
-                    
-                 </TextWrapper> 
-
-
-
-
-
-            </Container>
-
-
-
-        </>
-    )
-}
+        <TextWrapper>
+          <Description>{content.description}</Description>
+        </TextWrapper>
+        <Button className="button"> Book a Call </Button>
+      </Container>
+    </>
+  );
+};
 
 export default Post;

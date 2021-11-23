@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Post from "../Post-Image/index"; 
-import PostV from "../Post-Video/index"
+import Post from "../Post-Image/index";
+import PostV from "../Post-Video/index";
 
 const Body = () => {
   const BodyContainer = styled.div`
@@ -33,9 +33,6 @@ const Body = () => {
           <Para>Welcome to Jorr Parivar</Para>
         </Content>
       </BodyContent>
-      <Post></Post>
-      <PostV></PostV>
-      <Post></Post>
     </BodyContainer>
   );
 };

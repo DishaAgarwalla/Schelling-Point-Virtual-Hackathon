@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
   const HeaderContainer = styled.div`
@@ -10,6 +11,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
     /* width: 100vw; */
     height: fit-content;
     padding: 12px;
+    background-color: black;
 
     border-bottom: 1px solid white;
     top: 0;
@@ -26,14 +28,14 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
 
   const HeaderFields = styled.div`
     display: flex;
-    flex-direction: row;npm 
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 15px;
     padding: 0px 10px;
   `;
 
-  const Item = styled.a`
+  const Item = styled(Link)`
     text-decoration: none;
     height: 40px;
     width: 100px;
@@ -72,24 +74,22 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
         <h2>Jorr Parivar</h2>
       </Logo>
       <HeaderFields>
-        <Item
-        // href="/"
-        >
+        <Item to="/">
           <h4>Home</h4>
         </Item>
 
         {level.gold ? (
-          <Item>
+          <Item to="/gold">
             <h4>Gold</h4>
           </Item>
         ) : null}
         {level.silver ? (
-          <Item>
+          <Item to="/silver">
             <h4>Silver</h4>
           </Item>
         ) : null}
         {level.bronze ? (
-          <Item>
+          <Item to="/bronze">
             <h4>Bronze</h4>
           </Item>
         ) : null}

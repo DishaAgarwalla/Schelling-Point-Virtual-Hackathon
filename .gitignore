@@ -10,6 +10,7 @@
 
 # production
 /build
+/tokenUris
 
 # misc
 .DS_Store
