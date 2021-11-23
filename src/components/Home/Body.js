@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Post from "../Post/index"
+import Post from "../Post-Image/index"; 
+import PostV from "../Post-Video/index"
 
 const Body = () => {
   const BodyContainer = styled.div`
@@ -33,7 +34,7 @@ const Body = () => {
         </Content>
       </BodyContent>
       <Post></Post>
-      <Post></Post>
+      <PostV></PostV>
       <Post></Post>
     </BodyContainer>
   );
