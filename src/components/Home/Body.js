@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import HighlightVideo from "../HighlightVideo";
 import Post from "../Post-Image/index";
 import PostV from "../Post-Video/index";
 
@@ -31,6 +32,7 @@ const Body = () => {
       <BodyContent>
         <Content>
           <Para>Welcome to Jorr Parivar</Para>
+          {/* <HighlightVideo>  </HighlightVideo> */}
         </Content>
       </BodyContent>
     </BodyContainer>

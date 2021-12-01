@@ -3,6 +3,7 @@ import {
   Container,
   ImgWrapper,
   Img,
+  WatchNow,
   Title,
   Description,
   TextWrapper,
@@ -22,24 +23,22 @@ const PostV = ({ content }) => {
       <Container>
         <TextWrapper>
           <Title> {content.title} </Title>
-        </TextWrapper>
+          <Description>{content.description}</Description>
+         <WatchNow>Watch Now</WatchNow>
 
+          {/* <Button className="button"> Book a Call </Button> */}
+        </TextWrapper>
         <ImgWrapper>
           <iframe
             title="vimeo-player"
             src={content.video}
-            width="600"
-            height="360"
+            width="500"
+            height="500"
             frameBorder="0"
             allowFullScreen
           ></iframe>
         </ImgWrapper>
 
-        <TextWrapper>
-          <Description>{content.description}</Description>
-
-          {/* <Button className="button"> Book a Call </Button> */}
-        </TextWrapper>
       </Container>
     </>
   );

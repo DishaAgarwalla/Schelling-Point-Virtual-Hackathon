@@ -6,6 +6,7 @@ import {
   Title,
   Description,
   TextWrapper,
+  OuterContainer,
 } from "./elements";
 import { Button } from "react-bootstrap";
 
@@ -17,20 +18,19 @@ import Image3 from "../../images/A.jpg";
 const Post = ({ content }) => {
   return (
     <>
+      
       <Container>
-        <TextWrapper>
-          <Title>{content.title} </Title>
-        </TextWrapper>
-
         <ImgWrapper>
           <Img src={content.img}></Img>
         </ImgWrapper>
 
         <TextWrapper>
+        <Title>{content.title} </Title>
           <Description>{content.description}</Description>
         </TextWrapper>
-        <Button className="button"> Book a Call </Button>
+        {/* <Button className="button"> Book a Call </Button> */}
       </Container>
+      
     </>
   );
 };

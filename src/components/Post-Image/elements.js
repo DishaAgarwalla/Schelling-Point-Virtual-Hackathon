@@ -1,28 +1,48 @@
 import styled from "styled-components";
 
+export const OuterContainer = styled.div`
+
+
+`;
+
 export const Container = styled.div`
-  height: 600px;
-  width: 600px;
-  border: solid 2px white;
+  height: 500px;
+  width: 300px;
   color: white;
   /* display: flex;
   flex-direction: column; */
   display: grid;
-  margin: 30px auto;
+  margin: 0 0 0 100px;
+
+ display: inline-block;
   justify-items: center;
+
+  background-color:#1B1B1B;
+  border-radius: 25px;
+
+
+
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 600px) {
+   
+      position: relative;
+    
   }
 `;
 
 export const ImgWrapper = styled.div`
   /* display: center; */
-  width: 600px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   margin: auto;
   display: grid;
+  background-color:white;
   justify-items: center;
+  border-radius: 10px;
 `;
 
 export const TextWrapper = styled.div`
@@ -36,7 +56,7 @@ export const Img = styled.img`
 
 export const Title = styled.h1`
   font-family: Roboto;
-  font-size: 45px;
+  font-size: 30px;
   font-weight: bold;
   font-style: normal;
   text-align: center;
@@ -45,9 +65,9 @@ export const Title = styled.h1`
 `;
 
 export const Description = styled.p`
-  font-size: 15px;
+  font-size: 12px;
   color: grey;
   text-align: center;
-  margin: 0px 0 0 0;
+  margin: 10px 0 0 0;
   padding: 0 10px 0 10px;
 `;
