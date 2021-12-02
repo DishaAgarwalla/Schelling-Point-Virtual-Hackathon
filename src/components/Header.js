@@ -71,7 +71,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
   return (
     <HeaderContainer>
       <Logo>
-        <h2>Jorr Parivar</h2>
+        <h2>JorrParivar</h2>
       </Logo>
       <HeaderFields>
         <Item to="/">

@@ -21,13 +21,15 @@ const Segment = ({ segment }) => {
 
   return (
     <div style={{ marginTop: "40px" }}>
-      {contents.map((content, index) => {
-        if (content.img !== "") {
-          return <Post key={index} content={content} />;
-        } else if (content.video !== "") {
-          return <PostV key={index} content={content} />;
-        }
-      })}
+      {contents
+        .map((content, index) => {
+          if (content.img !== "") {
+            return <Post key={index} content={content} />;
+          } else if (content.video !== "") {
+            return <PostV key={index} content={content} />;
+          }
+        })
+        .reverse()}
     </div>
   );
 };

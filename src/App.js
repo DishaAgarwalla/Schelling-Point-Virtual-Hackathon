@@ -146,7 +146,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    // alert("Connect to mainnet!");
+    // alert("Connect to the Rinkeby testnet!");
     onConnectWallet();
   }, []);
 

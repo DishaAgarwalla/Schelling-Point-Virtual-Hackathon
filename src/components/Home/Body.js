@@ -30,7 +30,7 @@ const Body = () => {
       {/* <Image src={homePage} /> */}
       <BodyContent>
         <Content>
-          <Para>Welcome to Jorr Parivar</Para>
+          <Para>Welcome to JorrParivar</Para>
         </Content>
       </BodyContent>
     </BodyContainer>
