@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  MaxContainer,
   Container,
   ImgWrapper,
   Img,
@@ -19,12 +20,12 @@ var Video = "https://player.vimeo.com/video/578227462?h=a04379fb42";
 
 const PostV = ({ content }) => {
   return (
-    <>
+    <MaxContainer>
       <Container>
         <TextWrapper>
           <Title> {content.title} </Title>
           <Description>{content.description}</Description>
-         <WatchNow>Watch Now</WatchNow>
+          <WatchNow>Watch Now</WatchNow>
 
           {/* <Button className="button"> Book a Call </Button> */}
         </TextWrapper>
@@ -38,9 +39,8 @@ const PostV = ({ content }) => {
             allowFullScreen
           ></iframe>
         </ImgWrapper>
-
       </Container>
-    </>
+    </MaxContainer>
   );
 };
 

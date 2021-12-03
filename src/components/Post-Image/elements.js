@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-export const OuterContainer = styled.div`
-
-
-`;
+export const OuterContainer = styled.div``;
 
 export const Container = styled.div`
   height: 500px;
@@ -12,25 +9,20 @@ export const Container = styled.div`
   /* display: flex;
   flex-direction: column; */
   display: grid;
-  margin: 0 0 0 100px;
+  margin: 20px 50px;
 
- display: inline-block;
+  display: inline-block;
   justify-items: center;
 
-  background-color:#1B1B1B;
+  background-color: #1b1b1b;
   border-radius: 25px;
-
-
-
 
   &:hover {
     cursor: pointer;
   }
 
   @media screen and (max-width: 600px) {
-   
-      position: relative;
-    
+    position: relative;
   }
 `;
 
@@ -40,7 +32,7 @@ export const ImgWrapper = styled.div`
   height: 300px;
   margin: auto;
   display: grid;
-  background-color:white;
+  background-color: white;
   justify-items: center;
   border-radius: 10px;
 `;
@@ -70,4 +62,9 @@ export const Description = styled.p`
   text-align: center;
   margin: 10px 0 0 0;
   padding: 0 10px 0 10px;
+`;
+
+export const Video = styled.iframe`
+  display: grid;
+  align-self: center;
 `;

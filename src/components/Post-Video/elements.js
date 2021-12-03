@@ -1,33 +1,31 @@
 import styled from "styled-components";
 
+export const MaxContainer = styled.div`
+  width: 100vw;
+`;
+
 export const Container = styled.div`
   height: 500px;
   width: 1080px;
   color: white;
-  background-color:#1B1B1B;
+  background-color: #1b1b1b;
   border-radius: 25px;
   margin-top: 20px;
   margin: 30px auto;
-
 `;
 
 export const ImgWrapper = styled.div`
-
-   position:relative;
-    width: 400px;
-    height: 300px;
-    margin: 0 0 0 500px;
-  
-
-
+  position: relative;
+  width: 400px;
+  height: 300px;
+  margin: 0 0 0 500px;
 `;
 
 export const TextWrapper = styled.div`
   max-width: 600px;
-  align-items: right; 
+  align-items: right;
   padding: 10px 0 0 0;
-  position: absolute;;
-
+  position: absolute; ;
 `;
 
 export const Img = styled.img`
@@ -44,36 +42,32 @@ export const Title = styled.h1`
   font-style: normal;
   text-align: left;
   color: white;
-  margin: 100px 0  0 100px;
-
-
+  margin: 100px 0 0 100px;
 `;
 
 export const Description = styled.p`
   font-size: 15px;
   color: grey;
-  width:250px;
+  width: 250px;
   position: relative;
   text-align: left;
   margin: 20px 0 0 0;
   padding: 0 10px 0 100px;
-
 `;
 
 export const WatchNow = styled.button`
-  height: 40px; 
+  height: 40px;
   width: 150px;
-  background-color:#26B14B;
+  background-color: #26b14b;
   border-radius: 5px;
-  outline:none;
-  color:white;
+  outline: none;
+  color: white;
   text-align: center;
-  font-size:20px;
+  font-size: 20px;
   margin: 20px 0 0 100px;
   font-weight: bold;
 
   &:hover {
     cursor: pointer;
   }
-
 `;

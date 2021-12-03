@@ -3,6 +3,7 @@ import {
   Container,
   ImgWrapper,
   Img,
+  Video,
   Title,
   Description,
   TextWrapper,
@@ -15,22 +16,31 @@ import Image1 from "../../images/meme.png";
 import Image2 from "../../images/gogo.jpeg";
 import Image3 from "../../images/A.jpg";
 
-const Post = ({ content }) => {
+const Post = ({ content, video }) => {
   return (
     <>
-      
       <Container>
         <ImgWrapper>
-          <Img src={content.img}></Img>
+          {video ? (
+            <Video
+              title="vimeo-player"
+              src={content.video}
+              // width="500"
+              // height="500"
+              frameBorder="0"
+              allowFullScreen
+            ></Video>
+          ) : (
+            <Img src={content.img}></Img>
+          )}
         </ImgWrapper>
 
         <TextWrapper>
-        <Title>{content.title} </Title>
+          <Title>{content.title} </Title>
           <Description>{content.description}</Description>
         </TextWrapper>
         {/* <Button className="button"> Book a Call </Button> */}
       </Container>
-      
     </>
   );
 };
