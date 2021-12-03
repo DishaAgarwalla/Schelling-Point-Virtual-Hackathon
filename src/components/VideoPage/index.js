@@ -14,7 +14,7 @@ const Videopage = () => {
                 <VideoWrapper> 
                 <iframe
             title="vimeo-player"
-            src="https://www.youtube.com/embed/UjKY_JMR7nY"
+            src="https://player.vimeo.com/video/578227462?h=a04379fb42"
             width="1000"
             height="500"
             border-radius="20px"

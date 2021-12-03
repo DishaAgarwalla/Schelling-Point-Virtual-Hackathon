@@ -8,7 +8,7 @@ background-color: #1b1b1b;
     height: 800px; 
     border-radius: 20px;
     margin: auto;
-    padding: 75px 0 0 100px; 
+    padding: 75px 0 0 50px; 
 
 `;
 
@@ -24,6 +24,7 @@ export const TextWrapper = styled.div`
     // background-color: white;
     height: 200px; 
     width: 1000px;
+    padding: 0 0 0 50px;
 
 `;
 
