@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Post from "../Post-Image/index";
-import PostV from "../Post-Video/index";
+import Videopage from "../VideoPage";
 
 const Body = () => {
   const BodyContainer = styled.div`
@@ -34,6 +33,7 @@ const Body = () => {
           {/* <HighlightVideo>  </HighlightVideo> */}
         </Content>
       </BodyContent>
+      <Videopage />
     </BodyContainer>
   );
 };
