@@ -24,7 +24,7 @@ const PostV = ({ content }) => {
         <TextWrapper>
           <Title> {content.title} </Title>
           <Description>{content.description}</Description>
-         <WatchNow>Watch Now</WatchNow>
+         <WatchNow >Watch Now</WatchNow>
 
           {/* <Button className="button"> Book a Call </Button> */}
         </TextWrapper>

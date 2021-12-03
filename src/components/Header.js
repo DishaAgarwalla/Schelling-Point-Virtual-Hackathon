@@ -52,6 +52,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
     &:hover {
       transform: scale(1.1);
       cursor: pointer;
+      background-color:#25B04A;
     }
   `;
 
@@ -65,7 +66,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
   `;
 
   const userAddress = account
-    ? account.slice(0, 8) + "...." + account.slice(-8)
+    ? account.slice(0, 8) + "...." + account.slice(-8 )
     : null;
 
   return (
