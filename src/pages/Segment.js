@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const Segment = ({ segment }) => {
   const [contents, setcontents] = useState([]);
-  const displayPost = async () => {
+  const fetchContents = async () => {
     const url = `https://test-admin.kraznikunderverse.com/api/${segment}`;
     const options = {
       validate: "alpha romeo tango",
@@ -24,7 +24,7 @@ const Segment = ({ segment }) => {
   };
 
   useEffect(() => {
-    displayPost();
+    fetchContents();
   }, []);
 
   return (
@@ -32,12 +32,35 @@ const Segment = ({ segment }) => {
       {contents
         .map((content, index) => {
           if (index == contents.length - 1) {
-            return <PostV key={index} content={content} />;
+            return (
+              <PostV
+                key={index}
+                content={content}
+                segment={segment}
+                index={index}
+              />
+            );
           }
           if (content.img !== "") {
-            return <Post key={index} content={content} video={false} />;
+            return (
+              <Post
+                key={index}
+                content={content}
+                video={false}
+                segment={segment}
+                index={index}
+              />
+            );
           } else if (content.video !== "") {
-            return <Post key={index} content={content} video={true} />;
+            return (
+              <Post
+                key={index}
+                content={content}
+                video={true}
+                segment={segment}
+                index={index}
+              />
+            );
           }
         })
         .reverse()}

@@ -18,14 +18,14 @@ import Image3 from "../../images/A.jpg";
 
 var Video = "https://player.vimeo.com/video/578227462?h=a04379fb42";
 
-const PostV = ({ content }) => {
+const PostV = ({ content, segment, index }) => {
   return (
     <MaxContainer>
       <Container>
         <TextWrapper>
           <Title> {content.title} </Title>
           <Description>{content.description}</Description>
-          <WatchNow>Watch Now</WatchNow>
+          <WatchNow to={`${segment}/${index}`}>Watch Now</WatchNow>
 
           {/* <Button className="button"> Book a Call </Button> */}
         </TextWrapper>

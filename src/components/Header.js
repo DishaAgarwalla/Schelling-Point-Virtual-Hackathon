@@ -52,7 +52,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
     &:hover {
       transform: scale(1.1);
       cursor: pointer;
-      background-color:#25B04A;
+      background-color: #25b04a;
     }
   `;
 
@@ -66,7 +66,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
   `;
 
   const userAddress = account
-    ? account.slice(0, 8) + "...." + account.slice(-8 )
+    ? account.slice(0, 8) + "...." + account.slice(-8)
     : null;
 
   return (
@@ -80,17 +80,17 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
         </Item>
 
         {level.gold ? (
-          <Item to="/gold">
+          <Item to="/Gold">
             <h4>Gold</h4>
           </Item>
         ) : null}
         {level.silver ? (
-          <Item to="/silver">
+          <Item to="/Silver">
             <h4>Silver</h4>
           </Item>
         ) : null}
         {level.bronze ? (
-          <Item to="/bronze">
+          <Item to="/Bronze">
             <h4>Bronze</h4>
           </Item>
         ) : null}

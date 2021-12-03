@@ -30,10 +30,9 @@ const Body = () => {
       <BodyContent>
         <Content>
           <Para>Welcome to JorrParivar</Para>
-          {/* <HighlightVideo>  </HighlightVideo> */}
         </Content>
       </BodyContent>
-      <Videopage />
+      {/* <Videopage /> */}
     </BodyContainer>
   );
 };

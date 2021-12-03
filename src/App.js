@@ -12,6 +12,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 // const JorrToken = require("../ethereum/JorrToken");
 import JorrToken from "./ethereum/JorrToken";
 import Segment from "./pages/Segment";
+import ContentPage from "./pages/ContentPage";
 const axios = require("axios");
 
 const infuraId =
@@ -163,20 +164,38 @@ const App = () => {
         <ProtectedRoute
           level={gold}
           exact
-          path="/gold"
+          path="/Gold"
           component={() => <Segment segment="Gold" />}
-        />
-        <ProtectedRoute
-          level={silver}
-          exact
-          path="/silver"
-          component={() => <Segment segment="Silver" />}
         />
         <ProtectedRoute
           level={gold}
           exact
-          path="/bronze"
+          path="/Gold/:id"
+          component={() => <ContentPage segment="Gold" />}
+        />
+        <ProtectedRoute
+          level={silver}
+          exact
+          path="/Silver"
+          component={() => <Segment segment="Silver" />}
+        />
+        <ProtectedRoute
+          level={silver}
+          exact
+          path="/Silver/:id"
+          component={() => <ContentPage segment="Silver" />}
+        />
+        <ProtectedRoute
+          level={bronze}
+          exact
+          path="/Bronze"
           component={() => <Segment segment="Bronze" />}
+        />
+        <ProtectedRoute
+          level={bronze}
+          exact
+          path="/Bronze/:id"
+          component={() => <ContentPage segment="Bronze" />}
         />
         <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>

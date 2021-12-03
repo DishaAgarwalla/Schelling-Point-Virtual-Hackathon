@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MaxContainer = styled.div`
@@ -25,7 +26,8 @@ export const TextWrapper = styled.div`
   max-width: 600px;
   align-items: right;
   padding: 10px 0 0 0;
-  position: absolute; ;
+  position: absolute;
+  display: grid;
 `;
 
 export const Img = styled.img`
@@ -55,9 +57,10 @@ export const Description = styled.p`
   padding: 0 10px 0 100px;
 `;
 
-export const WatchNow = styled.button`
-  height: 40px;
-  width: 150px;
+export const WatchNow = styled(Link)`
+  /* height: 50px; */
+  width: fit-content;
+  padding: 5px 10px;
   background-color: #26b14b;
   border-radius: 5px;
   outline: none;
@@ -66,7 +69,7 @@ export const WatchNow = styled.button`
   font-size: 20px;
   margin: 20px 0 0 100px;
   font-weight: bold;
-
+  text-decoration: none;
   &:hover {
     cursor: pointer;
   }
