@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import HighlightVideo from "../HighlightVideo";
 import Post from "../Post-Image/index";
 import PostV from "../Post-Video/index";
 
