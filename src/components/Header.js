@@ -24,6 +24,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
     left: 0;
     /* position: absolute; */
     padding: 0px 10px;
+    font-weight: bold;
   `;
 
   const HeaderFields = styled.div`
@@ -72,7 +73,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
   return (
     <HeaderContainer>
       <Logo>
-        <h2>JorrParivar</h2>
+        <h2>JorrParivar Perks</h2>
       </Logo>
       <HeaderFields>
         <Item to="/">

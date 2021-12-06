@@ -111,8 +111,12 @@ const App = () => {
             //   console.log(trait);
             if (trait.trait_type === "Level") {
               console.log(trait.value);
-              if (trait.value === "Gold") setGold(true);
-              else if (trait.value === "Silver") setSilver(true);
+              if (trait.value === "Gold") 
+              {setGold(true);
+              setSilver(true);}
+              else if (trait.value === "Silver") 
+              {setSilver(true);
+              setBronze(true)}
               else if (trait.value === "Bronze") setBronze(true);
             }
             return 0;

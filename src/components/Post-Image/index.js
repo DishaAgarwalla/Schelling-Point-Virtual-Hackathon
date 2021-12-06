@@ -20,7 +20,7 @@ import Image3 from "../../images/A.jpg";
 const Post = ({ content, video, segment, index }) => {
   return (
     <>
-      <Container>
+      <Container >
         {video ? (
           <Link to={`/${segment}/${index}`}>
             <ImgWrapper>
@@ -40,7 +40,7 @@ const Post = ({ content, video, segment, index }) => {
           </ImgWrapper>
         )}
 
-        <TextWrapper>
+        <TextWrapper >
           <Title>{content.title} </Title>
           <Description>{content.description}</Description>
         </TextWrapper>

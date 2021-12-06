@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const OuterContainer = styled.div``;
 
 export const Container = styled.div`
-  height: 500px;
+  height: 400px;
   width: 300px;
   color: white;
   /* display: flex;
@@ -29,10 +29,10 @@ export const Container = styled.div`
 export const ImgWrapper = styled.div`
   /* display: center; */
   width: 300px;
-  height: 300px;
+  height: 200px;
   margin: auto;
   display: grid;
-  background-color: white;
+  background-color: #1B1B1B;
   justify-items: center;
   border-radius: 10px;
 `;
@@ -67,4 +67,5 @@ export const Description = styled.p`
 export const Video = styled.iframe`
   display: grid;
   align-self: center;
+  width: 400px
 `;
