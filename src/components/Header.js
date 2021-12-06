@@ -79,9 +79,9 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
           <h4>Home</h4>
         </Item>
 
-        {level.gold ? (
-          <Item to="/Gold">
-            <h4>Gold</h4>
+        {level.bronze ? (
+          <Item to="/Bronze">
+            <h4>Bronze</h4>
           </Item>
         ) : null}
         {level.silver ? (
@@ -89,9 +89,9 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
             <h4>Silver</h4>
           </Item>
         ) : null}
-        {level.bronze ? (
-          <Item to="/Bronze">
-            <h4>Bronze</h4>
+        {level.gold ? (
+          <Item to="/Gold">
+            <h4>Gold</h4>
           </Item>
         ) : null}
       </HeaderFields>
