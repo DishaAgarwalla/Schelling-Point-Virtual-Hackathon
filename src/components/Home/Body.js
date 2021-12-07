@@ -59,9 +59,18 @@ const Body = ({ account, haveTokens }) => {
       {/* <Image src={homePage} /> */}
       <BodyContent>
         <Content>
-          <Para>Welcome to JorrParivar Perks</Para>
+          <Para>
+            {account ? (
+              haveTokens ? (
+                <span>Hurray! You are in :)</span>
+              ) : (
+                <span>Wallet connected but No JorrParivar Found :(</span>
+              )
+            ) : (
+              <span>Watch video & Connect your wallet</span>
+            )}
+          </Para>
           <Container>
-            
             <iframe
               src={
                 account
@@ -79,7 +88,6 @@ const Body = ({ account, haveTokens }) => {
           </Container>
           {account ? (
             !haveTokens ? (
-              
               <LinkToOpensea
                 href="https://opensea.io/collection/jorrparivar"
                 target="_blank"
