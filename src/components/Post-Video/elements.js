@@ -40,7 +40,7 @@ export const Img = styled.img`
 export const Title = styled.h1`
   font-family: Roboto;
   font-size: 45px;
-width:350px;
+  width: 350px;
   font-weight: bold;
   font-style: normal;
   text-align: left;

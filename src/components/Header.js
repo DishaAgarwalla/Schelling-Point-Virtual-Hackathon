@@ -104,17 +104,17 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
         </Item>
 
         {level.bronze ? (
-          <Item exact to="/Bronze" activeClassName="selected">
+          <Item to="/Bronze" activeClassName="selected">
             <h4>Bronze</h4>
           </Item>
         ) : null}
         {level.silver ? (
-          <Item exact to="/Silver" activeClassName="selected">
+          <Item to="/Silver" activeClassName="selected">
             <h4>Silver</h4>
           </Item>
         ) : null}
         {level.gold ? (
-          <Item exact to="/Gold" activeClassName="selected">
+          <Item to="/Gold" activeClassName="selected">
             <h4>Gold</h4>
           </Item>
         ) : null}
