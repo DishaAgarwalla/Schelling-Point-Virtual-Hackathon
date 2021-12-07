@@ -40,10 +40,12 @@ export const Img = styled.img`
 export const Title = styled.h1`
   font-family: Roboto;
   font-size: 45px;
+width:350px;
   font-weight: bold;
   font-style: normal;
   text-align: left;
   color: white;
+
   margin: 100px 0 0 100px;
 `;
 
