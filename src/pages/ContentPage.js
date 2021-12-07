@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Videopage from "../components/VideoPage";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import ErrorPage from "../components/ErrorPage";
 
 const Container = styled.div`
   display: grid;
@@ -32,8 +33,12 @@ const ContentPage = ({ segment }) => {
   return (
     <Container>
       {contents ? (
-        <Videopage content={contents[id.toString()]} segment={segment} />
-      ) : null}
+        contents[id.toString()] ? (
+          <Videopage content={contents[id.toString()]} segment={segment} />
+        ) : // <ErrorPage text={"404 NOT FOUND"} />
+        null
+      ) : // <ErrorPage text={"404 NOT FOUND"} />
+      null}
     </Container>
   );
 };

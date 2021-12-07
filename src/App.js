@@ -13,6 +13,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import JorrToken from "./ethereum/JorrToken";
 import Segment from "./pages/Segment";
 import ContentPage from "./pages/ContentPage";
+import ErrorPage from "./components/ErrorPage";
 const axios = require("axios");
 
 const infuraId =
@@ -222,7 +223,10 @@ const App = () => {
           path="/Bronze/:id"
           component={() => <ContentPage segment="Bronze" />}
         />
-        <Route path="*" component={() => "404 NOT FOUND"} />
+        <Route
+          path="*"
+          component={() => <ErrorPage text={"404 NOT FOUND"} />}
+        />
       </Switch>
     </div>
   );

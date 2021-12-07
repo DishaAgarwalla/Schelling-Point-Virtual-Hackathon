@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
+import ErrorPage from "../components/ErrorPage";
 
 const ProtectedRoute = ({ component: Component, level, ...rest }) => {
   return (
@@ -9,15 +10,18 @@ const ProtectedRoute = ({ component: Component, level, ...rest }) => {
         if (level) {
           return <Component {...props} />;
         } else {
-          return (
-            <Redirect
-              to={{
-                pathname: "/",
-                state: { from: props.location },
-              }}
-            />
-          );
+          return <ErrorPage text={"LOCKED"} />;
         }
+        // else {
+        //   return (
+        //     <Redirect
+        //       to={{
+        //         pathname: "/",
+        //         state: { from: props.location },
+        //       }}
+        //     />
+        //   );
+        // }
       }}
     />
   );
