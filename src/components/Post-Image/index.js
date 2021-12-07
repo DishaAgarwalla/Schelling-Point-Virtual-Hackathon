@@ -24,18 +24,16 @@ const Post = ({ content, video, segment, index }) => {
         <Link to={`/${segment}/${index}`}>
           <Container>
             {video ? (
-              <Link to={`/${segment}/${index}`}>
-                <ImgWrapper>
-                  <Video
-                    title="vimeo-player"
-                    src={content.video}
-                    // width="500"
-                    // height="500"
-                    frameBorder="0"
-                    allowFullScreen
-                  ></Video>
-                </ImgWrapper>
-              </Link>
+              <ImgWrapper>
+                <Video
+                  title="vimeo-player"
+                  src={content.video}
+                  // width="500"
+                  // height="500"
+                  frameBorder="0"
+                  allowFullScreen
+                ></Video>
+              </ImgWrapper>
             ) : (
               <ImgWrapper>
                 <Img src={content.img}></Img>

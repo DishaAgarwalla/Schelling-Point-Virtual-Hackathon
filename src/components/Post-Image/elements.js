@@ -38,7 +38,7 @@ export const ImgWrapper = styled.div`
 `;
 
 export const TextWrapper = styled.div`
-  max-width: 600px;
+  max-width: 300px;
 `;
 
 export const Img = styled.img`
@@ -69,5 +69,5 @@ export const Video = styled.iframe`
   display: grid;
   align-self: center;
   justify-self: center;
-  width: 400px;
+  width: 300px;
 `;
