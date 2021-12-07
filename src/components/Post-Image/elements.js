@@ -32,8 +32,8 @@ export const ImgWrapper = styled.div`
   height: 200px;
   margin: auto;
   display: grid;
-  background-color: #1B1B1B;
-  justify-items: center;
+  background-color: #1b1b1b;
+  justify-content: center;
   border-radius: 10px;
 `;
 
@@ -49,7 +49,7 @@ export const Img = styled.img`
 export const Title = styled.h1`
   font-family: Roboto;
   font-size: 30px;
-  
+
   font-weight: bold;
   font-style: normal;
   text-align: center;
@@ -68,5 +68,6 @@ export const Description = styled.p`
 export const Video = styled.iframe`
   display: grid;
   align-self: center;
-  width: 400px
+  justify-self: center;
+  width: 400px;
 `;
