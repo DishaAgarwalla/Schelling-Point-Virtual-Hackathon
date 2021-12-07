@@ -42,6 +42,8 @@ const App = () => {
   const [silver, setSilver] = useState(false);
   const [bronze, setBronze] = useState(false);
 
+  const [haveTokens, setHaveTokens] = useState(false);
+
   const onConnectWallet = async () => {
     console.log("connecting wallet...");
     console.log("cached provider", web3Modal.cachedProvider);
@@ -78,54 +80,67 @@ const App = () => {
     console.log("cached provider after clear: ", web3Modal.cachedProvider);
     provider = null;
     setaccount("");
+    setGold(false);
+    setSilver(false);
+    setBronze(false);
+    setHaveTokens(false);
     window.location.reload();
   };
 
-  useEffect(() => {
-    const run = async () => {
-      try {
-        setGold(false);
-        setSilver(false);
-        setBronze(false);
-        const accounts = await web3.eth.getAccounts();
-        // setaccount(account[0]);
+  const run = async () => {
+    try {
+      setGold(false);
+      setSilver(false);
+      setBronze(false);
+      const accounts = await web3.eth.getAccounts();
+      // setaccount(account[0]);
 
-        const userAddress = accounts[0];
-        // "0x6ff9c8ed337de934e46e773f61a1a3369617c3ce";
-        //   "0x5908bfd84673974ddb8b6688501a53ac5fc92b6b";
-        const balance = await JorrToken.methods
-          .balanceOf(userAddress.toString())
+      // const userAddress = accounts[0];
+      const userAddress = account;
+      // "0x6ff9c8ed337de934e46e773f61a1a3369617c3ce";
+      //   "0x5908bfd84673974ddb8b6688501a53ac5fc92b6b";
+      const balance = await JorrToken.methods
+        .balanceOf(userAddress.toString())
+        .call();
+
+      // if(balance === 0)
+      console.log("Jor token balance: ", balance);
+      if (balance > 0) {
+        setHaveTokens(true);
+      }
+
+      for (let i = 0; i < balance; i++) {
+        const tokenId = await JorrToken.methods
+          .tokenOfOwnerByIndex(userAddress, i)
           .call();
 
-        for (let i = 0; i < balance; i++) {
-          const tokenId = await JorrToken.methods
-            .tokenOfOwnerByIndex(userAddress, i)
-            .call();
+        const url =
+          // `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
+          `https://rinkeby-api.opensea.io/api/v1/asset/0x002aF40A6eB3C688612184C51500b97C1b89dfFC/${tokenId}/`;
+        const { data } = await axios.get(url);
 
-          const url =
-            // `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
-            `https://rinkeby-api.opensea.io/api/v1/asset/0x002aF40A6eB3C688612184C51500b97C1b89dfFC/${tokenId}/`;
-          const { data } = await axios.get(url);
-
-          await data.traits.map((trait) => {
-            //   console.log(trait);
-            if (trait.trait_type === "Level") {
-              console.log(trait.value);
-              if (trait.value === "Gold") 
-              {setGold(true);
-              setSilver(true);}
-              else if (trait.value === "Silver") 
-              {setSilver(true);
-              setBronze(true)}
-              else if (trait.value === "Bronze") setBronze(true);
-            }
-            return 0;
-          });
-        }
-      } catch (err) {
-        console.log(err);
+        await data.traits.map((trait) => {
+          //   console.log(trait);
+          if (trait.trait_type === "Level") {
+            console.log(trait.value);
+            if (trait.value === "Gold") {
+              setGold(true);
+              setSilver(true);
+              setBronze(true);
+            } else if (trait.value === "Silver") {
+              setSilver(true);
+              setBronze(true);
+            } else if (trait.value === "Bronze") setBronze(true);
+          }
+          return 0;
+        });
       }
-    };
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
     run();
   }, [account]);
 
@@ -134,13 +149,15 @@ const App = () => {
       try {
         window.ethereum.on("accountsChanged", async function () {
           // Time to reload your interface with accounts[0]!
-          const account = await web3.eth.getAccounts();
-          setaccount(account[0]);
+          const accounts = await web3.eth.getAccounts();
+          setaccount(accounts[0]);
           // accounts = await web3.eth.getAccounts();
-          console.log(account);
+          console.log(accounts);
           setGold(false);
           setSilver(false);
           setBronze(false);
+          // run();
+          window.location.reload();
         });
       } catch (err) {
         console.log("Browser wallet not installed!");
@@ -164,7 +181,11 @@ const App = () => {
         level={{ gold: gold, silver: silver, bronze: bronze }}
       />
       <Switch>
-        <Route exact path="/" component={() => <Home />} />
+        <Route
+          exact
+          path="/"
+          component={() => <Home account={account} haveTokens={haveTokens} />}
+        />
         <ProtectedRoute
           level={gold}
           exact

@@ -1,10 +1,10 @@
 import React from "react";
 import Body from "../components/Home/Body";
 
-const Home = () => {
+const Home = ({ account, haveTokens }) => {
   return (
     <div>
-      <Body />
+      <Body account={account} haveTokens={haveTokens} />
     </div>
   );
 };

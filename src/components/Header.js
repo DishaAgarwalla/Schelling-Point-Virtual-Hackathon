@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
   const HeaderContainer = styled.div`
@@ -36,7 +36,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
     padding: 0px 10px;
   `;
 
-  const Item = styled(Link)`
+  const Item = styled(NavLink)`
     text-decoration: none;
     height: 40px;
     width: 100px;
@@ -55,15 +55,38 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
       cursor: pointer;
       background-color: #25b04a;
     }
+
+    &.selected {
+      background-color: #25b04a;
+      transform: scale(1.1);
+    }
   `;
 
-  const Wallet = styled(Item)`
+  const Wallet = styled.div`
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+    color: white;
+
+    border: 1px solid white;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    margin: 0px 5px;
+    transition: 0.3s ease-in;
+
     width: fit-content;
     top: 0;
     right: 10;
     position: inherit;
     padding: 0px 15px;
     margin-right: 50px;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+      background-color: #25b04a;
+    }
   `;
 
   const userAddress = account
@@ -76,22 +99,22 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
         <h2>JorrParivar Perks</h2>
       </Logo>
       <HeaderFields>
-        <Item to="/">
+        <Item exact to="/" activeClassName="selected">
           <h4>Home</h4>
         </Item>
 
         {level.bronze ? (
-          <Item to="/Bronze">
+          <Item exact to="/Bronze" activeClassName="selected">
             <h4>Bronze</h4>
           </Item>
         ) : null}
         {level.silver ? (
-          <Item to="/Silver">
+          <Item exact to="/Silver" activeClassName="selected">
             <h4>Silver</h4>
           </Item>
         ) : null}
         {level.gold ? (
-          <Item to="/Gold">
+          <Item exact to="/Gold" activeClassName="selected">
             <h4>Gold</h4>
           </Item>
         ) : null}
