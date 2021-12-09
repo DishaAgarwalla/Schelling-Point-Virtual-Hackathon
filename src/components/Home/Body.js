@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Videopage from "../VideoPage";
+import "./style.css"
 
 const Body = ({ account, haveTokens }) => {
   const BodyContainer = styled.div`
@@ -15,7 +16,7 @@ const Body = ({ account, haveTokens }) => {
   `;
 
   const Container = styled.div`
-    background-color: #1b1b1b;
+    background-color: black;
     border-radius: 20px;
     height: 400px;
     width: 700px;
@@ -38,7 +39,7 @@ const Body = ({ account, haveTokens }) => {
     width: fit-content;
     justify-self: center;
     border-radius: 10px;
-    margin: 20px;
+    margin: 10px;
     text-decoration: none;
     font-size: 16px;
     font-weight: 600;
@@ -72,6 +73,7 @@ const Body = ({ account, haveTokens }) => {
           </Para>
           <Container>
             <iframe
+            className="video"
               src={
                 account
                   ? haveTokens
@@ -79,8 +81,7 @@ const Body = ({ account, haveTokens }) => {
                     : connectedNoTokens
                   : noAccountUrl
               }
-              width="640"
-              height="360"
+              
               frameborder="0"
               allow="autoplay; fullscreen; picture-in-picture"
               allowfullscreen
