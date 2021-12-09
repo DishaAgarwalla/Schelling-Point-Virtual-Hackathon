@@ -24,7 +24,7 @@ const Post = ({ content, video, segment, index }) => {
         <Link to={`/${segment}/${index}`}>
           <Container>
             {video ? (
-              <ImgWrapper>
+              <ImgWrapper className="video">
                 <Video
                   title="vimeo-player"
                   src={content.video}
