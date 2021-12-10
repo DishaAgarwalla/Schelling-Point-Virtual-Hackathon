@@ -4,7 +4,7 @@ export const OuterContainer = styled.div``;
 
 export const Container = styled.div`
   height: 400px;
-  width: 300px;
+  width: 290px;
   color: white;
   /* display: flex;
   flex-direction: column; */
@@ -29,7 +29,7 @@ export const Container = styled.div`
 export const ImgWrapper = styled.div`
   /* display: center; */
   width: 300px;
-  height: 200px;
+  height: 190px;
   margin: auto;
   display: grid;
   background-color: #1b1b1b;
