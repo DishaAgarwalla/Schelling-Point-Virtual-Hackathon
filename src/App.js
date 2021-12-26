@@ -13,12 +13,13 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import JorrToken from "./ethereum/JorrToken";
 import Segment from "./pages/Segment";
 import ContentPage from "./pages/ContentPage";
+import Podcast from "./pages/Podcast";
 import ErrorPage from "./components/ErrorPage";
 const axios = require("axios");
 
 const infuraId =
   "https://mainnet.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
-  // "https://rinkeby.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
+// "https://rinkeby.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
 
 const providerOptions = {
   walletconnect: {
@@ -115,9 +116,8 @@ const App = () => {
           .tokenOfOwnerByIndex(userAddress, i)
           .call();
 
-        const url =
-          `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
-          // `https://rinkeby-api.opensea.io/api/v1/asset/0x002aF40A6eB3C688612184C51500b97C1b89dfFC/${tokenId}/`;
+        const url = `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
+        // `https://rinkeby-api.opensea.io/api/v1/asset/0x002aF40A6eB3C688612184C51500b97C1b89dfFC/${tokenId}/`;
         const { data } = await axios.get(url);
 
         await data.traits.map((trait) => {
@@ -187,6 +187,7 @@ const App = () => {
           path="/"
           component={() => <Home account={account} haveTokens={haveTokens} />}
         />
+        <Route exact path="/thirdweb-podcast" component={() => <Podcast />} />
         <ProtectedRoute
           level={gold}
           exact

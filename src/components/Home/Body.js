@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Videopage from "../VideoPage";
-import "./style.css"
+import "./style.css";
 
 const Body = ({ account, haveTokens }) => {
   const BodyContainer = styled.div`
@@ -73,7 +73,7 @@ const Body = ({ account, haveTokens }) => {
           </Para>
           <Container>
             <iframe
-            className="video"
+              className="video"
               src={
                 account
                   ? haveTokens
@@ -81,7 +81,6 @@ const Body = ({ account, haveTokens }) => {
                     : connectedNoTokens
                   : noAccountUrl
               }
-              
               frameborder="0"
               allow="autoplay; fullscreen; picture-in-picture"
               allowfullscreen
