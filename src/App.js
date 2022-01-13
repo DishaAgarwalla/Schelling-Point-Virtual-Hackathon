@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import Holders from "../src/pages/Holders";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 
@@ -224,6 +225,12 @@ const App = () => {
           path="/Bronze/:id"
           component={() => <ContentPage segment="Bronze" />}
         />
+        <Route
+          
+          exact
+          path="/Holders"
+          component={() => <Holders  />}
+        />        
         <Route
           path="*"
           component={() => <ErrorPage text={"404 NOT FOUND"} />}

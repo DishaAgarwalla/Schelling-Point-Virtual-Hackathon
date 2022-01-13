@@ -56,6 +56,8 @@ const Body = ({ account, haveTokens }) => {
     "https://player.vimeo.com/video/653647633?h=c62cbb52a3";
 
   return (
+
+    <>
     <BodyContainer>
       {/* <Image src={homePage} /> */}
       <BodyContent>
@@ -100,6 +102,10 @@ const Body = ({ account, haveTokens }) => {
       </BodyContent>
       {/* <Videopage /> */}
     </BodyContainer>
+  
+    </>
+
+  
   );
 };
 

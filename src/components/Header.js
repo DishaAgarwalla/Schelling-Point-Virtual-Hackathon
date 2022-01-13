@@ -102,8 +102,11 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
         <Item exact to="/" activeClassName="selected">
           <h4>Home</h4>
         </Item>
-        <Item exact to="/thirdweb-podcast" activeClassName="selected">
+        {/* <Item exact to="/thirdweb-podcast" activeClassName="selected">
           <h4>Podcast</h4>
+        </Item> */}
+        <Item exact to="/Holders" activeClassName="selected">
+          <h4> Skelott </h4>
         </Item>
 
         {level.bronze ? (
