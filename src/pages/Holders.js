@@ -7,7 +7,7 @@ const Container = styled.div`
   max-height: 80vh !important;
 `;
 
-const Holders = ({ sessions }) => {
+const Holders = () => {
   const playerRef = React.useRef(null);
 
   const videoJsOptions = {
@@ -37,16 +37,6 @@ const Holders = ({ sessions }) => {
       console.log("player will dispose");
     });
   };
-
-  // const changePlayerOptions = () => {
-  //   // you can update the player through the Video.js player instance
-  //   if (!playerRef.current) {
-  //     return;
-  //   }
-  //   // [update player through instance's api]
-  //   playerRef.current.src([{src: 'http://ex.com/video.mp4', type: 'video/mp4'}]);
-  //   playerRef.current.autoplay(false);
-  // };
 
   return (
     <Container>
