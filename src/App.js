@@ -11,8 +11,7 @@ import Web3Modal from "web3modal";
 import web3 from "./ethereum/web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
-// const JorrToken = require("../ethereum/JorrToken");
-import JorrToken from "./ethereum/JorrToken";
+import ZeusNFT from "./ethereum/ZeusNFT";
 import Segment from "./pages/Segment";
 import ContentPage from "./pages/ContentPage";
 import Podcast from "./pages/Podcast";
@@ -125,7 +124,7 @@ const App = () => {
       const userAddress = account;
       // "0x6ff9c8ed337de934e46e773f61a1a3369617c3ce";
       //   "0x5908bfd84673974ddb8b6688501a53ac5fc92b6b";
-      const balance = await JorrToken.methods
+      const balance = await ZeusNFT.methods
         .balanceOf(userAddress.toString())
         .call();
 
@@ -136,12 +135,13 @@ const App = () => {
       }
 
       for (let i = 0; i < balance; i++) {
-        const tokenId = await JorrToken.methods
+        const tokenId = await ZeusNFT.methods
           .tokenOfOwnerByIndex(userAddress, i)
           .call();
 
-        const url = `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
-        // `https://rinkeby-api.opensea.io/api/v1/asset/0x002aF40A6eB3C688612184C51500b97C1b89dfFC/${tokenId}/`;
+        const url =
+          // `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
+          `https://rinkeby-api.opensea.io/api/v1/asset/0x5d3a3430aEBa963DA7a83a330337B9efe777A1e0/${tokenId}/`;
         const { data } = await axios.get(url);
 
         await data.traits.map((trait) => {
@@ -211,7 +211,7 @@ const App = () => {
           path="/"
           component={() => <Home account={account} haveTokens={haveTokens} />}
         />
-        <Route exact path="/thirdweb-podcast" component={() => <Podcast />} />
+        {/* <Route exact path="/thirdweb-podcast" component={() => <Podcast />} /> */}
         <ProtectedRoute
           level={gold}
           exact
@@ -222,7 +222,7 @@ const App = () => {
           level={gold}
           exact
           path="/Gold/:id"
-          component={() => <ContentPage segment="Gold" />}
+          component={() => <ContentPage segment="Gold" account={account} />}
         />
         <ProtectedRoute
           level={silver}
@@ -234,7 +234,7 @@ const App = () => {
           level={silver}
           exact
           path="/Silver/:id"
-          component={() => <ContentPage segment="Silver" />}
+          component={() => <ContentPage segment="Silver" account={account} />}
         />
         <ProtectedRoute
           level={bronze}
@@ -246,19 +246,22 @@ const App = () => {
           level={bronze}
           exact
           path="/Bronze/:id"
-          component={() => <ContentPage segment="Bronze" />}
+          component={() => <ContentPage segment="Bronze" account={account} />}
         />
-        <Route
+        <ProtectedRoute
+          level={gold || silver || bronze}
           exact
           path="/Holders"
           component={() => <Holders sessions={sessions} />}
         />
-        <Route
+        <ProtectedRoute
+          level={gold || silver || bronze}
           exact
           path="/pastSessions"
           component={() => <Recorded sessions={sessions} />}
         />
-        <Route
+        <ProtectedRoute
+          level={gold || silver || bronze}
           exact
           path="/pastSessions/:id"
           component={() => <RecordedVideo sessions={sessions} />}

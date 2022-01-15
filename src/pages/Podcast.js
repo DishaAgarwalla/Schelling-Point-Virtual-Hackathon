@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 const Podcast = () => {
   const [videoURL, setvideoURL] = React.useState("");
@@ -28,31 +29,52 @@ const Podcast = () => {
       address: address,
       url: "https://www.youtube.com/watch?v=5xYDXp7fkY4", //videoURL,
     });
+
+    const url = `https://nft-yt-backend.prathamprasoon.repl.co/mint`;
+    const options = {
+      // Adding method type
+      method: "POST",
+      // Adding body or contents to send
+      body: data,
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    };
     try {
-      myfetch(
-        `https://nft-yt-backend.prathamprasoon.repl.co/mint`,
-        {
-          // Adding method type
-          method: "POST",
-          // Adding body or contents to send
-          body: data,
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        },
-        300000
-      )
-        .then((result) => {
-          console.log(result);
-          return result.json();
-        })
-        .then((response) => {
-          setImage(response.image);
-          setLoading(false);
-        });
+      const res = await axios.post(url, options);
+      console.log(res);
+      if (res) {
+        console.log("Minted");
+        setLoading(false);
+      }
     } catch (err) {
-      alert("Failed to fetch api");
+      alert("Failing to fetch the api");
     }
+    // try {
+    //   myfetch(
+    //     `https://nft-yt-backend.prathamprasoon.repl.co/mint`,
+    //     {
+    //       // Adding method type
+    //       method: "POST",
+    //       // Adding body or contents to send
+    //       body: data,
+    //       headers: {
+    //         "Content-type": "application/json; charset=UTF-8",
+    //       },
+    //     },
+    //     300000
+    //   )
+    //     .then((result) => {
+    //       console.log(result);
+    //       return result.json();
+    //     })
+    //     .then((response) => {
+    //       // setImage(response.image);
+    //       setLoading(false);
+    //     });
+    // } catch (err) {
+    //   alert("Failed to fetch api");
+    // }
   }
 
   var player;
@@ -117,17 +139,21 @@ const Podcast = () => {
     }
     setMinted(false);
   }
+
+  React.useEffect(() => {
+    window.YT.ready(onYouTubeIframeAPIReady);
+  }, []);
   return (
     <div style={{ display: "grid", justifyContent: "center" }}>
       Podcast
       <>
         <div className="grid justify-items-center">
-          <button
+          {/* <button
             onClick={() => window.YT.ready(onYouTubeIframeAPIReady)}
             className="text-gray-100 text-xl p-2 rounded-lg hover:bg-blue-900 bg-blue-500"
           >
             Load Video
-          </button>
+          </button> */}
           <div className="mt-10" id="player"></div>
 
           {watchedVideo ? (
@@ -153,13 +179,12 @@ const Podcast = () => {
                     </div>
                   ) : (
                     <div className="mt-20 grid justify-items-center">
-                      <img src={"data:image/png;base64," + image} />
+                      {/* <img src={"data:image/png;base64," + image} /> */}
                       <h1 className="text-xl font-mono font-bold mt-10">
                         NFT successfully minted to {address} :)
                       </h1>
                     </div>
                   )}
-                  ;
                 </div>
               ) : null}
             </div>

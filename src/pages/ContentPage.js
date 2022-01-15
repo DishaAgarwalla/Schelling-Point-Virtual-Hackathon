@@ -10,7 +10,7 @@ const Container = styled.div`
   margin: 50px;
 `;
 
-const ContentPage = ({ segment }) => {
+const ContentPage = ({ segment, account }) => {
   const [contents, setcontents] = useState(null);
   const { id } = useParams();
 
@@ -34,7 +34,11 @@ const ContentPage = ({ segment }) => {
     <Container>
       {contents ? (
         contents[id.toString()] ? (
-          <Videopage content={contents[id.toString()]} segment={segment} />
+          <Videopage
+            content={contents[id.toString()]}
+            segment={segment}
+            account={account}
+          />
         ) : // <ErrorPage text={"404 NOT FOUND"} />
         null
       ) : // <ErrorPage text={"404 NOT FOUND"} />
