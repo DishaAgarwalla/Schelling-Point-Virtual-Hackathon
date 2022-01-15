@@ -96,7 +96,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
   return (
     <HeaderContainer>
       <Logo>
-        <h2> NFT Hack</h2>
+        <h2> ZeusDAO</h2>
       </Logo>
       <HeaderFields>
         <Item exact to="/" activeClassName="selected">
