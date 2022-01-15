@@ -31,7 +31,7 @@ const RecordedVideo = ({ sessions }) => {
   React.useEffect(() => {
     fetchSessions();
     console.log("sessions in recorded vid:", sessions);
-    console.log("url:", sessions[id - 1].recordingUrl);
+    // console.log("url:", sessions[id - 1].recordingUrl);
   }, []);
 
   //   const videoJsOptions = {
@@ -74,7 +74,7 @@ const RecordedVideo = ({ sessions }) => {
           sources: [
             {
               //   src: "https://fra-cdn.livepeer.com/recordings/e42b9d48-fcb3-4c33-9043-c2a909055525/index.m3u8",
-              src: sessions ? sessions[id - 1].recordingUrl : "",
+              src: sessions[id - 1] ? sessions[id - 1].recordingUrl : "",
             },
           ],
         }}

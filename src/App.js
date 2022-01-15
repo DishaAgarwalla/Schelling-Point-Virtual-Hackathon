@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Holders from "../src/pages/Holders";
+import Recorded from "./pages/Recorded";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 
@@ -251,6 +252,11 @@ const App = () => {
           exact
           path="/Holders"
           component={() => <Holders sessions={sessions} />}
+        />
+        <Route
+          exact
+          path="/pastSessions"
+          component={() => <Recorded sessions={sessions} />}
         />
         <Route
           exact

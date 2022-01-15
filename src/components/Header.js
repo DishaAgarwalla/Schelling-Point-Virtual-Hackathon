@@ -109,7 +109,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
           <h4> Livepeer</h4>
         </Item>
 
-        <Item exact to="/s" activeClassName="selected">
+        <Item exact to="/pastSessions" activeClassName="selected">
           <h4> Recorded</h4>
         </Item>
 

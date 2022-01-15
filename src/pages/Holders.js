@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import VideoJS from "../components/VideoJS"; // point to where the functional component is stored
-import RecordedSessions from "../components/RecordedSessions";
 
 const Container = styled.div`
   display: grid;
@@ -52,8 +51,6 @@ const Holders = ({ sessions }) => {
   return (
     <Container>
       <div>AMA Session</div>
-      <RecordedSessions sessions={sessions} />
-
       <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
     </Container>
   );
