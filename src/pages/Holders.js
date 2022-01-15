@@ -1,7 +1,14 @@
 import React from "react";
+import styled from "styled-components";
 import VideoJS from "../components/VideoJS"; // point to where the functional component is stored
+import RecordedSessions from "../components/RecordedSessions";
 
-const Holders = () => {
+const Container = styled.div`
+  display: grid;
+  max-height: 80vh !important;
+`;
+
+const Holders = ({ sessions }) => {
   const playerRef = React.useRef(null);
 
   const videoJsOptions = {
@@ -10,9 +17,11 @@ const Holders = () => {
     controls: true,
     responsive: true,
     fluid: true,
+    height: 10,
+    width: 10,
     sources: [
       {
-        src: "",
+        src: "https://lax-cdn.livepeer.com/recordings/e42b9d48-fcb3-4c33-9043-c2a909055525/index.m3u8",
       },
     ],
   };
@@ -41,11 +50,12 @@ const Holders = () => {
   // };
 
   return (
-    <>
+    <Container>
       <div>AMA Session</div>
+      <RecordedSessions sessions={sessions} />
 
-      <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-    </>
+      {/* <VideoJS options={videoJsOptions} onReady={handlePlayerReady} /> */}
+    </Container>
   );
 };
 

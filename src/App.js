@@ -16,6 +16,7 @@ import Segment from "./pages/Segment";
 import ContentPage from "./pages/ContentPage";
 import Podcast from "./pages/Podcast";
 import ErrorPage from "./components/ErrorPage";
+import RecordedVideo from "./components/RecordedSessions/RecordedVideo";
 const axios = require("axios");
 
 const infuraId =
@@ -46,6 +47,27 @@ const App = () => {
   const [bronze, setBronze] = useState(false);
 
   const [haveTokens, setHaveTokens] = useState(false);
+  const [sessions, setSessions] = useState([]);
+  const fetchSessions = async () => {
+    try {
+      const url = `https://livepeer.com/api/stream/e42bd9b4-3d01-4a93-bce6-92c54cdb22e1/sessions`;
+      const options = {
+        headers: {
+          "content-type": "application/json",
+          authorization: "Bearer 8dc398be-464b-448a-a377-b21e76da223b",
+        },
+      };
+      const { data } = await axios.get(url, options);
+      console.log(data);
+      setSessions(data);
+    } catch (err) {
+      if (err) console.log(err);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchSessions();
+  }, []);
 
   const onConnectWallet = async () => {
     console.log("connecting wallet...");
@@ -226,11 +248,15 @@ const App = () => {
           component={() => <ContentPage segment="Bronze" />}
         />
         <Route
-          
           exact
           path="/Holders"
-          component={() => <Holders  />}
-        />        
+          component={() => <Holders sessions={sessions} />}
+        />
+        <Route
+          exact
+          path="/pastSessions/:id"
+          component={() => <RecordedVideo sessions={sessions} />}
+        />
         <Route
           path="*"
           component={() => <ErrorPage text={"404 NOT FOUND"} />}
