@@ -109,6 +109,10 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
           <h4> Livepeer</h4>
         </Item>
 
+        <Item exact to="/s" activeClassName="selected">
+          <h4> Recorded</h4>
+        </Item>
+
         {level.bronze ? (
           <Item to="/Bronze" activeClassName="selected">
             <h4>Bronze</h4>

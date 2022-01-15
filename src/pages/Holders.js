@@ -54,7 +54,7 @@ const Holders = ({ sessions }) => {
       <div>AMA Session</div>
       <RecordedSessions sessions={sessions} />
 
-      {/* <VideoJS options={videoJsOptions} onReady={handlePlayerReady} /> */}
+      <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
     </Container>
   );
 };
