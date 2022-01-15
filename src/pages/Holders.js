@@ -12,7 +12,7 @@ const Holders = () => {
     fluid: true,
     sources: [
       {
-        src: "",
+        src: "https://cdn.livepeer.com/hls/4939fdf2b6y76u9q/index.m3u8",
       },
     ],
   };
@@ -42,7 +42,7 @@ const Holders = () => {
 
   return (
     <>
-      <div>AMA Session</div>
+      <div></div>
 
       <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
     </>
