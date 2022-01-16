@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: #1b1b1b;
   width: 1060px;
-  height: 800px;
+  height: 900px;
   border-radius: 20px;
   margin: auto;
   padding: 75px 0 0 60px;
@@ -62,4 +62,8 @@ export const MintPoap = styled.div`
   justify-content: center;
   border-radius: 10px;
   margin: auto;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
