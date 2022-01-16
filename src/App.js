@@ -57,6 +57,7 @@ const App = () => {
         headers: {
           "content-type": "application/json",
           authorization: "Bearer 8dc398be-464b-448a-a377-b21e76da223b",
+          "Access-Control-Allow-Origin": "*",
         },
       };
       const { data } = await axios.get(url, options);
@@ -78,6 +79,7 @@ const App = () => {
         headers: {
           "content-type": "application/json",
           authorization: "Bearer 8dc398be-464b-448a-a377-b21e76da223b",
+          "Access-Control-Allow-Origin": "*",
         },
       };
       const { data } = await axios.get(url, options);
@@ -154,7 +156,7 @@ const App = () => {
         .call();
 
       // if(balance === 0)
-      console.log("Jor token balance: ", balance);
+      console.log("token balance: ", balance);
       if (balance > 0) {
         setHaveTokens(true);
       }

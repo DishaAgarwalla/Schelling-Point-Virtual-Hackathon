@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   VideoWrapper,
@@ -7,6 +7,7 @@ import {
   TextWrapper,
   BackLink,
   MintPoap,
+  PoapMinted,
 } from "./videopageelements";
 import axios from "axios";
 import PoapNFT from "../../ethereum/PoapNFT";
@@ -19,6 +20,8 @@ const Videopage = ({ content, segment, account }) => {
   const [image, setImage] = React.useState("");
   const [name, setName] = React.useState("");
   const [minted, setMinted] = React.useState(false);
+
+  const [poapMinted, setPoapMinted] = useState(false);
   let videolength = 0;
   let watchLength = 0;
 
@@ -62,6 +65,7 @@ const Videopage = ({ content, segment, account }) => {
     // }
     console.log("Minting");
     await PoapNFT.methods.mintPoap().send({ from: account, gas: "210000" });
+    setPoapMinted(true);
   }
 
   var player;
@@ -130,6 +134,20 @@ const Videopage = ({ content, segment, account }) => {
   React.useEffect(() => {
     window.YT.ready(onYouTubeIframeAPIReady);
   }, []);
+
+  const fetchPoapBalance = async () => {
+    const poapBalance = await PoapNFT.methods
+      .balanceOf(account.toString())
+      .call();
+    console.log("poap balance: ", poapBalance);
+    if (poapBalance > 0) setPoapMinted(true);
+    console.log("poap minted: ", poapMinted);
+  };
+
+  useEffect(() => {
+    fetchPoapBalance();
+  }, []);
+
   return (
     <div>
       <Container>
@@ -145,7 +163,11 @@ const Videopage = ({ content, segment, account }) => {
           ></iframe> */}
           <div className="mt-10" id="player"></div>
           {watchedVideo ? (
-            <MintPoap onClick={mintNFT}>Mint POAP</MintPoap>
+            !poapMinted ? (
+              <MintPoap onClick={mintNFT}>Claim POAP</MintPoap>
+            ) : (
+              <PoapMinted>POAP has been claimed! Hurrah ;)</PoapMinted>
+            )
           ) : null}
         </VideoWrapper>
         <TextWrapper>

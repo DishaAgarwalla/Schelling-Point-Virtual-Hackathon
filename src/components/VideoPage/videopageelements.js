@@ -40,6 +40,13 @@ export const Title = styled.h1`
   color: white;
 `;
 
+export const PoapMinted = styled.h2`
+  font-family: Roboto;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+`;
+
 export const Description = styled.p`
   font-size: 20px;
   color: grey;
