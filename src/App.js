@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import Holders from "../src/pages/Holders";
+import Livepeer from "../src/pages/Livepeer";
 import Recorded from "./pages/Recorded";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
@@ -251,8 +251,8 @@ const App = () => {
         <ProtectedRoute
           level={gold || silver || bronze}
           exact
-          path="/Holders"
-          component={() => <Holders sessions={sessions} />}
+          path="/Livepeer"
+          component={() => <Livepeer sessions={sessions} />}
         />
         <ProtectedRoute
           level={gold || silver || bronze}

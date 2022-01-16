@@ -7,7 +7,7 @@ const Container = styled.div`
   max-height: 80vh !important;
 `;
 
-const Holders = () => {
+const Livepeer = () => {
   const playerRef = React.useRef(null);
 
   const videoJsOptions = {
@@ -46,4 +46,4 @@ const Holders = () => {
   );
 };
 
-export default Holders;
+export default Livepeer;

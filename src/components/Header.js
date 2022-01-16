@@ -105,7 +105,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
         {/* <Item exact to="/thirdweb-podcast" activeClassName="selected">
           <h4>Podcast</h4>
         </Item> */}
-        <Item exact to="/Holders" activeClassName="selected">
+        <Item exact to="/Livepeer" activeClassName="selected">
           <h4> Livepeer</h4>
         </Item>
 
