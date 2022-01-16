@@ -48,6 +48,8 @@ const App = () => {
 
   const [haveTokens, setHaveTokens] = useState(false);
   const [sessions, setSessions] = useState([]);
+  const [stream, setStream] = useState({ isActive: false });
+
   const fetchSessions = async () => {
     try {
       const url = `https://livepeer.com/api/stream/e42bd9b4-3d01-4a93-bce6-92c54cdb22e1/sessions`;
@@ -67,6 +69,29 @@ const App = () => {
 
   React.useEffect(() => {
     fetchSessions();
+  }, []);
+
+  const fetchPlaybackId = async () => {
+    try {
+      const url = `https://livepeer.com/api/stream/e42bd9b4-3d01-4a93-bce6-92c54cdb22e1`;
+      const options = {
+        headers: {
+          "content-type": "application/json",
+          authorization: "Bearer 8dc398be-464b-448a-a377-b21e76da223b",
+        },
+      };
+      const { data } = await axios.get(url, options);
+      console.log(data);
+      // setIsStreamActive(data.isActive);
+      // setPlaybackId(data.playbackId);
+      setStream(data);
+    } catch (err) {
+      if (err) console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchPlaybackId();
   }, []);
 
   const onConnectWallet = async () => {
@@ -252,7 +277,7 @@ const App = () => {
           level={gold || silver || bronze}
           exact
           path="/Livepeer"
-          component={() => <Livepeer sessions={sessions} />}
+          component={() => <Livepeer sessions={sessions} stream={stream} />}
         />
         <ProtectedRoute
           level={gold || silver || bronze}

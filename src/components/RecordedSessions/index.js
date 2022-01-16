@@ -9,6 +9,12 @@ const Title = styled.div`
   text-align: center;
   margin: 40px;
 `;
+
+const Grid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 const Card = styled(Link)`
   display: grid;
   height: 300px;
@@ -31,15 +37,17 @@ const RecordedSessions = ({ sessions }) => {
   return (
     <>
       <Title>Recorded Sessions</Title>
-      {sessions
-        ? sessions.map((session, index) => {
-            return (
-              <Card key={index} to={`pastSessions/${index + 1}`}>
-                <div>Session #{index + 1}</div>
-              </Card>
-            );
-          })
-        : null}
+      <Grid>
+        {sessions
+          ? sessions.map((session, index) => {
+              return (
+                <Card key={index} to={`pastSessions/${index + 1}`}>
+                  <div>Session #{index + 1}</div>
+                </Card>
+              );
+            })
+          : null}
+      </Grid>
     </>
   );
 };

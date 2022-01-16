@@ -1,14 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import VideoJS from "../components/VideoJS"; // point to where the functional component is stored
+import axios from "axios";
 
 const Container = styled.div`
   display: grid;
   max-height: 80vh !important;
 `;
 
-const Livepeer = () => {
+const Title = styled.div`
+  font-size: 30px;
+  text-align: center;
+  margin: 40px;
+`;
+
+const Livepeer = ({ stream }) => {
+  const [isStreamActive, setIsStreamActive] = useState(false);
+  const [playbackId, setPlaybackId] = useState("");
+
   const playerRef = React.useRef(null);
+
+  const fetchPlaybackId = async () => {
+    try {
+      const url = `https://livepeer.com/api/stream/e42bd9b4-3d01-4a93-bce6-92c54cdb22e1`;
+      const options = {
+        headers: {
+          "content-type": "application/json",
+          authorization: "Bearer 8dc398be-464b-448a-a377-b21e76da223b",
+        },
+      };
+      const { data } = await axios.get(url, options);
+      console.log(data);
+      setIsStreamActive(data.isActive);
+      setPlaybackId(data.playbackId);
+    } catch (err) {
+      if (err) console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchPlaybackId();
+  }, []);
 
   const videoJsOptions = {
     // lookup the options in the docs for more options
@@ -20,7 +52,11 @@ const Livepeer = () => {
     width: 10,
     sources: [
       {
-        src: "https://lax-cdn.livepeer.com/recordings/e42b9d48-fcb3-4c33-9043-c2a909055525/index.m3u8",
+        src: stream
+          ? stream.isActive
+            ? `https://cdn.livepeer.com/hls/${stream.playbackId}/index.m3u8`
+            : null
+          : null,
       },
     ],
   };
@@ -40,8 +76,13 @@ const Livepeer = () => {
 
   return (
     <Container>
-      <div>AMA Session</div>
-      <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+      <Title>AMA Session</Title>
+      {/* <div>{playbackId}</div> */}
+      {stream.isActive ? (
+        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+      ) : (
+        <Title>No live session going on...</Title>
+      )}
     </Container>
   );
 };

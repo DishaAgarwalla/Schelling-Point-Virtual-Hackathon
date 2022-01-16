@@ -16,6 +16,13 @@ export const VideoWrapper = styled.div`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
+  display: grid;
+  gap: 20px;
+
+  #player {
+    width: 1000px;
+    height: 500px;
+  }
 `;
 
 export const TextWrapper = styled.div`
@@ -41,4 +48,18 @@ export const Description = styled.p`
 export const BackLink = styled(Link)`
   color: grey;
   text-decoration: none;
+`;
+
+export const MintPoap = styled.div`
+  color: white;
+  background: grey;
+  width: 130px;
+  height: 50px;
+  padding: 10px;
+  font-size: 20px;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: auto;
 `;

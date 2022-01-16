@@ -6,6 +6,7 @@ import {
   Description,
   TextWrapper,
   BackLink,
+  MintPoap,
 } from "./videopageelements";
 import axios from "axios";
 import PoapNFT from "../../ethereum/PoapNFT";
@@ -143,7 +144,9 @@ const Videopage = ({ content, segment, account }) => {
             allowFullScreen
           ></iframe> */}
           <div className="mt-10" id="player"></div>
-          {watchedVideo ? <div onClick={mintNFT}>Mint POAP</div> : null}
+          {watchedVideo ? (
+            <MintPoap onClick={mintNFT}>Mint POAP</MintPoap>
+          ) : null}
         </VideoWrapper>
         <TextWrapper>
           <Description>

@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import VideoJS from "../VideoJS";
+import styled from "styled-components";
+
+const Title = styled.div`
+  font-size: 30px;
+  text-align: center;
+  margin: 40px;
+`;
 
 const RecordedVideo = ({ sessions }) => {
   //   const [sessions, setSessions] = useState();
@@ -63,23 +70,32 @@ const RecordedVideo = ({ sessions }) => {
 
   return (
     <>
-      <div>RecordedSession #{id}</div>
+      <Title>RecordedSession #{id}</Title>
       {/* <div>{sessions[id - 1].userId}</div> */}
-      <VideoJS
-        options={{
-          autoplay: true,
-          controls: true,
-          responsive: true,
-          fluid: true,
-          sources: [
-            {
-              //   src: "https://fra-cdn.livepeer.com/recordings/e42b9d48-fcb3-4c33-9043-c2a909055525/index.m3u8",
-              src: sessions[id - 1] ? sessions[id - 1].recordingUrl : "",
-            },
-          ],
-        }}
-        onReady={handlePlayerReady}
-      />
+      {sessions[id - 1] ? (
+        sessions[id - 1].recordingStatus === "waiting" ? (
+          <>
+            <Title>Recording status is in waiting...</Title>
+            <Title>Will soon be displayed...</Title>
+          </>
+        ) : (
+          <VideoJS
+            options={{
+              autoplay: true,
+              controls: true,
+              responsive: true,
+              fluid: true,
+              sources: [
+                {
+                  //   src: "https://fra-cdn.livepeer.com/recordings/e42b9d48-fcb3-4c33-9043-c2a909055525/index.m3u8",
+                  src: sessions[id - 1] ? sessions[id - 1].recordingUrl : "",
+                },
+              ],
+            }}
+            onReady={handlePlayerReady}
+          />
+        )
+      ) : null}
     </>
   );
 };
