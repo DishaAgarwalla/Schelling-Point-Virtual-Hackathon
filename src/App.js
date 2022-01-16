@@ -52,11 +52,11 @@ const App = () => {
 
   const fetchSessions = async () => {
     try {
-      const url = `https://livepeer.com/api/stream/e42bd9b4-3d01-4a93-bce6-92c54cdb22e1/sessions`;
+      const url = `https://livepeer.com/api/stream/${process.env.REACT_APP_STREAM_ID}/sessions`;
       const options = {
         headers: {
           "content-type": "application/json",
-          authorization: "Bearer 8dc398be-464b-448a-a377-b21e76da223b",
+          authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
           "Access-Control-Allow-Origin": "*",
         },
       };
@@ -73,12 +73,14 @@ const App = () => {
   }, []);
 
   const fetchPlaybackId = async () => {
+    console.log("stream id: ", process.env.REACT_APP_STREAM_ID);
+    console.log("api key: ", process.env.REACT_APP_API_KEY);
     try {
-      const url = `https://livepeer.com/api/stream/e42bd9b4-3d01-4a93-bce6-92c54cdb22e1`;
+      const url = `https://livepeer.com/api/stream/${process.env.REACT_APP_STREAM_ID}`;
       const options = {
         headers: {
           "content-type": "application/json",
-          authorization: "Bearer 8dc398be-464b-448a-a377-b21e76da223b",
+          authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
           "Access-Control-Allow-Origin": "*",
         },
       };
