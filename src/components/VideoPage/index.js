@@ -73,8 +73,8 @@ const Videopage = ({ content, segment, account }) => {
     player = new window.YT.Player("player", {
       height: "390",
       width: "640",
-      // videoId: content.video.slice(30),
-      videoId: "5xYDXp7fkY4",
+      videoId: segment === "Silver" ? "5xYDXp7fkY4" : content.video.slice(30),
+      // videoId: "5xYDXp7fkY4",
       playerVars: {
         playsinline: 1,
       },
@@ -87,9 +87,9 @@ const Videopage = ({ content, segment, account }) => {
 
   function onPlayerReady(event) {
     var total_time = player.getDuration();
-    console.log(total_time);
+    // console.log(total_time);
     const title = player.getVideoData().title;
-    console.log("title", title);
+    // console.log("title", title);
     setName(title);
     videolength = parseInt(total_time);
     event.target.playVideo();
@@ -97,7 +97,7 @@ const Videopage = ({ content, segment, account }) => {
 
   function onPlayerStateChange(event) {
     const current_time = player.getCurrentTime();
-    console.log(videolength, current_time, watchLength);
+    // console.log(videolength, current_time, watchLength);
     if (current_time - watchLength > 10) {
       player.seekTo(watchLength, true);
       setTimeout(() => {
@@ -121,15 +121,15 @@ const Videopage = ({ content, segment, account }) => {
     player.stopVideo();
   }
 
-  function handleData(data) {
-    if (data.length != 42) {
-      window.alert("Please enter valid wallet address");
-    } else {
-      console.log("address: ", data);
-      setAddress(data);
-    }
-    setMinted(false);
-  }
+  // function handleData(data) {
+  //   if (data.length != 42) {
+  //     window.alert("Please enter valid wallet address");
+  //   } else {
+  //     console.log("address: ", data);
+  //     setAddress(data);
+  //   }
+  //   setMinted(false);
+  // }
 
   React.useEffect(() => {
     window.YT.ready(onYouTubeIframeAPIReady);
@@ -139,9 +139,9 @@ const Videopage = ({ content, segment, account }) => {
     const poapBalance = await PoapNFT.methods
       .balanceOf(account.toString())
       .call();
-    console.log("poap balance: ", poapBalance);
+    // console.log("poap balance: ", poapBalance);
     if (poapBalance > 0) setPoapMinted(true);
-    console.log("poap minted: ", poapMinted);
+    // console.log("poap minted: ", poapMinted);
   };
 
   useEffect(() => {
