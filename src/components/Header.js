@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
+const Header = ({ account, onConnectWallet, onDisconnect, level, udName }) => {
   const HeaderContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -96,7 +96,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
   return (
     <HeaderContainer>
       <Logo>
-        <h2> ZeusDAO</h2>
+        <h2>ZeusDAO</h2>
       </Logo>
       <HeaderFields>
         <Item exact to="/" activeClassName="selected">
@@ -140,7 +140,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
         </Wallet>
       ) : (
         <Wallet onClick={onDisconnect}>
-          <h3>{userAddress}</h3>
+          {udName ? <h3>{udName}</h3> : <h3>{userAddress}</h3>}
         </Wallet>
       )}
     </HeaderContainer>

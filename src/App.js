@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -7,6 +7,8 @@ import Recorded from "./pages/Recorded";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 
+import * as UAuthWeb3Modal from "@uauth/web3modal";
+import UAuthSPA from "@uauth/js";
 import Web3Modal from "web3modal";
 import web3 from "./ethereum/web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
@@ -23,7 +25,33 @@ const infuraId =
   "https://mainnet.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
 // "https://rinkeby.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
 
+// These options are used to construct the UAuthSPA instance.
+export const uauthOptions = {
+  clientID: process.env.REACT_APP_UD_CLIENT_ID,
+  clientSecret: process.env.REACT_APP_UD_SECRET_KEY,
+  redirectUri: "https://zeus-dao.web.app/callback",
+  // "http://localhost:3000",
+
+  // Must include both the openid and wallet scopes.
+  scope: "openid wallet",
+};
+
 const providerOptions = {
+  // All custom `web3modal` providers must be registered using the "custom-"
+  // prefix.
+  "custom-uauth": {
+    // The UI Assets
+    display: UAuthWeb3Modal.display,
+
+    // The Connector
+    connector: UAuthWeb3Modal.connector,
+
+    // The SPA libary
+    package: UAuthSPA,
+
+    // The SPA libary options
+    options: uauthOptions,
+  },
   walletconnect: {
     package: WalletConnectProvider, // required
     options: {
@@ -37,6 +65,10 @@ const web3Modal = new Web3Modal({
   cacheProvider: true, // optional
   providerOptions, // required
 });
+
+// Register the web3modal so the connector has access to it.
+UAuthWeb3Modal.registerWeb3Modal(web3Modal);
+
 let provider;
 
 const App = () => {
@@ -46,9 +78,18 @@ const App = () => {
   const [silver, setSilver] = useState(false);
   const [bronze, setBronze] = useState(false);
 
+  const [udName, setUdName] = useState();
+
   const [haveTokens, setHaveTokens] = useState(false);
   const [sessions, setSessions] = useState([]);
   const [stream, setStream] = useState({ isActive: false });
+
+  const uauth = useMemo(() => {
+    console.log("New UAuth instance!");
+    const { package: uauthPackage, options: uauthOptions } =
+      providerOptions["custom-uauth"];
+    return UAuthWeb3Modal.getUAuth(uauthPackage, uauthOptions);
+  }, []);
 
   const fetchSessions = async () => {
     try {
@@ -103,11 +144,15 @@ const App = () => {
     console.log("cached provider", web3Modal.cachedProvider);
     try {
       provider = await web3Modal.connect();
+      console.log("web3 modal connect provider: ", provider);
     } catch (err) {
       console.log("Could not get a wallet connection", err);
       return;
     }
     web3.setProvider(provider);
+    if (web3Modal.cachedProvider === "custom-uauth") {
+      setUdName(await uauth.user());
+    }
     const accounts = await web3.eth.getAccounts();
     setaccount(accounts[0]);
   };
@@ -233,6 +278,7 @@ const App = () => {
         onConnectWallet={onConnectWallet}
         onDisconnect={onDisconnect}
         level={{ gold: gold, silver: silver, bronze: bronze }}
+        udName={udName}
       />
       <Switch>
         <Route
