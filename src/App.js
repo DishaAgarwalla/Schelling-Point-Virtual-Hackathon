@@ -151,10 +151,18 @@ const App = () => {
     }
     web3.setProvider(provider);
     if (web3Modal.cachedProvider === "custom-uauth") {
-      setUdName(await uauth.user());
+      try {
+        const udname = await uauth.user();
+        console.log("uauth name: ", udname);
+        setUdName(udname.sub);
+        setaccount(udname.wallet_address);
+      } catch (err) {
+        if (err) console.error(err);
+      }
+    } else {
+      const accounts = await web3.eth.getAccounts();
+      setaccount(accounts[0]);
     }
-    const accounts = await web3.eth.getAccounts();
-    setaccount(accounts[0]);
   };
 
   const onDisconnect = async (e) => {
@@ -175,7 +183,7 @@ const App = () => {
       "cached provider after provider.close(): ",
       web3Modal.cachedProvider
     );
-    web3Modal.clearCachedProvider();
+    await web3Modal.clearCachedProvider();
     console.log("cached provider after clear: ", web3Modal.cachedProvider);
     provider = null;
     setaccount("");
@@ -269,6 +277,15 @@ const App = () => {
   useEffect(() => {
     // alert("Connect to the Rinkeby testnet!");
     onConnectWallet();
+    // const fetchAccount = async () => {
+    //   try {
+    //     const accounts = await web3.eth.getAccounts();
+    //     setaccount(accounts[0]);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // fetchAccount();
   }, []);
 
   return (
